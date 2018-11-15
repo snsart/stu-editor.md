@@ -75,7 +75,6 @@
             
             $("#show").click(function(e){	
             	$.get("php/showblog.php",function(data,status){
-            		console.log(data);
 				    $("#showcontent").html(data);
 				});
             })

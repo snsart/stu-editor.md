@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	</head>
+	<body>
+		<form id="fm" enctype="multipart/form-data">
+			<label for="imagefile">上传图片：</label>
+			<input type="file" id="imagefile" name="imagefile" />
+		</form>
+		<button id="btn">开始上传</button>
+		<script>
+			/*学习：
+			 1.上传的图像文件可以为中文
+			 2.zip等压缩文件不能用中文
+			 	总结：文件名最好都不要用中文；
+			 * */
+	
+			$("#btn").click(function(){
+				var formdata=new FormData(document.getElementById("fm"));
+				console.log(formdata);
+				$.ajax({
+					type:"post",
+					url:"upload.php",
+					async:true,
+					data:formdata,
+					contentType:false,
+					processData:false,//重要，传输文件必须设置为false
+					success:function(data){
+						console.log(data);
+					}
+				});
+				/*$.post("upload.php",formdata,function(data,status){
+					alert(data);
+				});*/
+			})
+		</script>
+	</body>
+</html>
